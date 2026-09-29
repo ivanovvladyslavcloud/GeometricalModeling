@@ -1,0 +1,144 @@
+﻿<Window x:Class="Lab2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="clr-namespace:Lab2.UI"
+        Title="Geometry Editor"
+        Width="1800" Height="800"
+        MinWidth="1000" MinHeight="600">
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Exit"/>
+            </MenuItem>
+            <MenuItem Header="View">
+                <MenuItem Header="Zoom In" Click="ZoomInButton_Click"/>
+                <MenuItem Header="Zoom Out" Click="ZoomOutButton_Click"/>
+                <MenuItem Header="Reset View" Click="ResetViewButton_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Text="Ready"/>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock x:Name="ScaleStatusTextBlock" Text="Scale: 100%"/>
+            </StatusBarItem>
+        </StatusBar>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="600"/>
+            </Grid.ColumnDefinitions>
+
+          
+
+            <Border Grid.Column="0" Background="#F5F5F5">
+                <ui:CoordinateCanvas x:Name="DrawingCanvas"/>
+            </Border>
+            
+            <Border Grid.Column="1" BorderBrush="LightGray" BorderThickness="1,0,0,0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="15">
+
+
+                        <TextBlock Text="View &amp; System" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+
+                        <TextBlock Text="Scale Factor (px/unit)"/>
+                        <TextBox x:Name="ScaleValueTextBox" Text="20" Margin="0,3,0,8"/>
+                        <Button Content="Set Scale" Height="26" Click="SetScaleButton_Click" Margin="0,0,0,10"/>
+
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Content="Zoom +" Height="28" Margin="0,0,3,0" Click="ZoomInButton_Click"/>
+                            <Button Grid.Column="1" Content="Zoom -" Height="28" Margin="3,0,0,0" Click="ZoomOutButton_Click"/>
+                        </Grid>
+
+                        <TextBlock Text="Center Offset" FontWeight="Bold" Margin="0,5,0,5"/>
+                        <TextBlock Text="Offset X"/>
+                        <TextBox x:Name="OffsetXTextBox" Text="0" Margin="0,3,0,6"/>
+                        <TextBlock Text="Offset Y"/>
+                        <TextBox x:Name="OffsetYTextBox" Text="0" Margin="0,3,0,6"/>
+                        <Button Content="Apply Offset" Height="26" Click="ApplyOffsetButton_Click" Margin="0,0,0,10"/>
+
+                        <StackPanel Margin="10" DockPanel.Dock="Right">
+                            <TextBlock Text="Strophoid's Parameteres" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                            <TextBlock Text="Loop Size (A):"/>
+                            <TextBox x:Name="TxtA" Text="50" TextChanged="OnStrophoidParameterChanged" Margin="0,0,0,10"/>
+
+                            <TextBlock Text="Arc Length (TMax):"/>
+                            <TextBox x:Name="TxtTMax" Text="50" TextChanged="OnStrophoidParameterChanged" Margin="0,0,0,10"/>
+
+                            <TextBlock Text="Quality / Breakdown (Steps):"/>
+                            <TextBox x:Name="TxtSteps" Text="300" TextChanged="OnStrophoidParameterChanged" Margin="0,0,0,10"/>
+
+                            <Button x:Name="BtnToggleAnimation" 
+                                Content="Start Animation" 
+                                Height="30" 
+                                Margin="0,10,0,0" 
+                                Click="BtnToggleAnimation_Click"/>
+
+                        </StackPanel>
+
+                        <StackPanel Margin="10" DockPanel.Dock="Right">
+                            <TextBlock Text="Point on Curve (t):" FontWeight="Bold"/>
+                            <Slider x:Name="SliderT" Minimum="-5" Maximum="5" Value="0.5" ValueChanged="SliderT_ValueChanged" Margin="0,5,0,15"/>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <Rectangle Width="12" Height="12" Fill="Green" Margin="0,0,5,0"/>
+                                <TextBlock Text="— Tangent"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <Rectangle Width="12" Height="12" Fill="Red" Margin="0,0,5,0"/>
+                                <TextBlock Text="— Normal"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <CheckBox x:Name="ChkShowAsymptote" 
+                          Content="Show Asymptote (x = -a)" 
+                          IsChecked="True" 
+                          Click="ChkShowAsymptote_Click" 
+                          Margin="0,0,0,10"/>
+
+                        <StackPanel Margin="10" DockPanel.Dock="Right">
+                            <TextBlock Text="Features:" FontWeight="Bold" Margin="0,0,0,5"/>
+
+                            <TextBlock Text="Radius of Curvature (R):" Foreground="Gray"/>
+                            <TextBlock x:Name="LblRadius" Text="—" FontWeight="SemiBold" Margin="0,0,0,8"/>
+
+                            <TextBlock Text="Loop Length (L_loop):" Foreground="Gray"/>
+                            <TextBlock x:Name="LblLoopLength" Text="—" FontWeight="SemiBold" Margin="0,0,0,8"/>
+
+                            <TextBlock Text="Length of Current Arc:" Foreground="Gray"/>
+                            <TextBlock x:Name="LblArcLength" Text="—" FontWeight="SemiBold" Margin="0,0,0,8"/>
+
+                            <TextBlock Text="Loop Area (S_loop):" Foreground="Gray"/>
+                            <TextBlock x:Name="LblLoopArea" Text="—" FontWeight="SemiBold" Margin="0,0,0,8"/>
+
+                            <TextBlock Text="Asymptote Area (S_asymp):" Foreground="Gray"/>
+                            <TextBlock x:Name="LblAsymptoteArea" Text="—" FontWeight="SemiBold" Margin="0,0,0,8"/>
+
+                            <TextBlock Text="Inflections:" Foreground="Gray"/>
+                            <TextBlock x:Name="LblInflections" Text="None" FontWeight="SemiBold" Foreground="DarkRed" Margin="0,0,0,8"/>
+                        </StackPanel>
+
+                        <StackPanel>
+                        <TextBlock Text="Transform" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+                        <TextBlock Text="Press the keys to move the curve accordingly: W - up, A - left S - down, D - right"/>
+                        <TextBlock Text="Press E to rotate the loop clockwise and Q to rotate it counterclockwise."/>
+                        <TextBlock Text="Right-click to change position of pivot point for rotation."/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </DockPanel>
+</Window>

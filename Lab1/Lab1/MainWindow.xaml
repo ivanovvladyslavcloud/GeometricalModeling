@@ -1,0 +1,220 @@
+﻿<Window x:Class="Lab1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="clr-namespace:Lab1.UI"
+        Title="Geometry Editor"
+        Width="1800" Height="800"
+        MinWidth="1000" MinHeight="600">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Exit"/>
+            </MenuItem>
+            <MenuItem Header="View">
+                <MenuItem Header="Zoom In" Click="ZoomInButton_Click"/>
+                <MenuItem Header="Zoom Out" Click="ZoomOutButton_Click"/>
+                <MenuItem Header="Reset View" Click="ResetViewButton_Click"/>
+                <MenuItem Header="Fit to View" Click="FitToViewButton_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Text="Ready"/>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock x:Name="ScaleStatusTextBlock" Text="Scale: 100%"/>
+            </StatusBarItem>
+        </StatusBar>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="320"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" BorderBrush="LightGray" BorderThickness="0,0,1,0">
+                <DockPanel>
+                    <Button DockPanel.Dock="Bottom" Content="Reset" Height="35" Margin="10" Click="ResetButton_Click"/>
+                    <TextBlock DockPanel.Dock="Top" Text="Parameters" FontSize="18" FontWeight="Bold" Margin="15"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel x:Name="ParametersPanel" Margin="10"/>
+                    </ScrollViewer>
+                </DockPanel>
+            </Border>
+
+            <Border Grid.Column="1" Background="#F5F5F5">
+                <ui:CoordinateCanvas x:Name="DrawingCanvas"/>
+            </Border>
+            <Border Grid.Column="2" BorderBrush="LightGray" BorderThickness="1,0,0,0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="15">
+                        <TextBlock Text="View &amp; System" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+
+                        <TextBlock Text="Scale Factor (px/unit)"/>
+                        <TextBox x:Name="ScaleValueTextBox" Text="20" Margin="0,3,0,8"/>
+                        <Button Content="Set Scale" Height="26" Click="SetScaleButton_Click" Margin="0,0,0,10"/>
+
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Content="Zoom +" Height="28" Margin="0,0,3,0" Click="ZoomInButton_Click"/>
+                            <Button Grid.Column="1" Content="Zoom -" Height="28" Margin="3,0,0,0" Click="ZoomOutButton_Click"/>
+                        </Grid>
+
+                        <TextBlock Text="Center Offset" FontWeight="Bold" Margin="0,5,0,5"/>
+                        <TextBlock Text="Offset X"/>
+                        <TextBox x:Name="OffsetXTextBox" Text="0" Margin="0,3,0,6"/>
+                        <TextBlock Text="Offset Y"/>
+                        <TextBox x:Name="OffsetYTextBox" Text="0" Margin="0,3,0,6"/>
+                        <Button Content="Apply Offset" Height="26" Click="ApplyOffsetButton_Click" Margin="0,0,0,10"/>
+
+                        <Button Content="Fit To Screen" Height="30" Click="FitToViewButton_Click" Margin="0,0,0,5" FontWeight="Bold"/>
+                        <Button Content="Center Axes (0,0)" Height="26" Click="ResetViewButton_Click" Margin="0,0,0,15"/>
+
+                        <Separator Margin="0,10,0,20"/>
+
+                        <TextBlock Text="Move" FontWeight="Bold"/>
+                        <TextBlock Text="DX"/>
+                        <TextBox x:Name="MoveXTextBox" Margin="0,3,0,8"/>
+                        <TextBlock Text="DY"/>
+                        <TextBox x:Name="MoveYTextBox" Margin="0,3,0,8"/>
+                        <Button Content="Apply Move" Height="30" Click="MoveButton_Click" Margin="0,0,0,20"/>
+
+                        <TextBlock Text="Rotate" FontWeight="Bold"/>
+                        <TextBlock Text="Center X"/>
+                        <TextBox x:Name="RotateXTextBox" Margin="0,3,0,8"/>
+                        <TextBlock Text="Center Y"/>
+                        <TextBox x:Name="RotateYTextBox" Margin="0,3,0,8"/>
+                        <TextBlock Text="Angle (degrees)"/>
+                        <TextBox x:Name="RotateAngleTextBox" Margin="0,3,0,8"/>
+                        <Button Content="Apply Rotate" Height="30" Click="RotateButton_Click"/>
+
+                        <Separator Margin="0,20,0,20"/>
+
+                        <StackPanel>
+
+                            <TextBlock Text="Transform Mode" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+                            <StackPanel Margin="0,0,0,15">
+                                <RadioButton x:Name="AffineModeRadioButton" Content="Affine Transformation" IsChecked="True" GroupName="TransformMode" Margin="0,2"/>
+                                <RadioButton x:Name="ProjectiveModeRadioButton" Content="Projective Transformation" GroupName="TransformMode" Margin="0,2"/>
+                            </StackPanel>
+
+                            <StackPanel Visibility="{Binding IsChecked, ElementName=AffineModeRadioButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <TextBlock Text="Affine Transformation" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="a00" HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="a01" HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="2" Text="a02" HorizontalAlignment="Center"/>
+                                    <TextBox x:Name="AffineA00TextBox" Grid.Row="1" Grid.Column="0" Text="1" Margin="2"/>
+                                    <TextBox x:Name="AffineA01TextBox" Grid.Row="1" Grid.Column="1" Text="0" Margin="2"/>
+                                    <TextBox x:Name="AffineA02TextBox" Grid.Row="1" Grid.Column="2" Text="0" Margin="2"/>
+
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="a10" HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Text="a11" HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="2" Text="a12" HorizontalAlignment="Center"/>
+                                    <TextBox x:Name="AffineA10TextBox" Grid.Row="3" Grid.Column="0" Text="0" Margin="2"/>
+                                    <TextBox x:Name="AffineA11TextBox" Grid.Row="3" Grid.Column="1" Text="1" Margin="2"/>
+                                    <TextBox x:Name="AffineA12TextBox" Grid.Row="3" Grid.Column="2" Text="0" Margin="2"/>
+                                </Grid>
+
+                                <Button Content="Apply Affine" Height="30" Click="AffineButton_Click"/>
+                                <Separator Margin="0,20,0,20"/>
+
+                                <GroupBox Header="Special cases of affine transformations" Margin="5">
+                                    <StackPanel Margin="5">
+                                        <TextBlock Text="Pivot point (X0, Y0):" FontWeight="Bold" Margin="0,2"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                                            <TextBlock Text="X0:" VerticalAlignment="Center"/>
+                                            <TextBox x:Name="PointX0TextBox" Text="0" Width="40" Margin="5,0"/>
+                                            <TextBlock Text="Y0:" VerticalAlignment="Center"/>
+                                            <TextBox x:Name="PointY0TextBox" Text="0" Width="40" Margin="5,0"/>
+                                        </StackPanel>
+
+                                        <TextBlock Text="Symmetry about a point:" FontWeight="Bold" Margin="0,5,0,2"/>
+                                        <UniformGrid Columns="3">
+                                            <Button Content="X" Click="SymmetryX_Click" Margin="2"/>
+                                            <Button Content="Y" Click="SymmetryY_Click" Margin="2"/>
+                                            <Button Content="XY" Click="SymmetryXY_Click" Margin="2"/>
+                                        </UniformGrid>
+
+                                        <TextBlock Text="Scale:" FontWeight="Bold" Margin="0,5,0,2"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                                            <TextBlock Text="Kx:" VerticalAlignment="Center"/>
+                                            <TextBox x:Name="ScaleKxTextBox" Text="2" Width="40" Margin="5,0"/>
+                                            <TextBlock Text="Ky:" VerticalAlignment="Center"/>
+                                            <TextBox x:Name="ScaleKyTextBox" Text="2" Width="40" Margin="5,0"/>
+                                        </StackPanel>
+                                        <Button Content="Apply scale" Click="Scale_Click" Margin="2"/>
+                                    </StackPanel>
+                                </GroupBox>
+                            </StackPanel>
+
+                            <StackPanel Visibility="{Binding IsChecked, ElementName=ProjectiveModeRadioButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <TextBlock Text="Projective Transformation" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="h00" HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="h01" HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="2" Text="h02" HorizontalAlignment="Center"/>
+                                    <TextBox x:Name="ProjH00TextBox" Grid.Row="1" Grid.Column="0" Text="1" Margin="2"/>
+                                    <TextBox x:Name="ProjH01TextBox" Grid.Row="1" Grid.Column="1" Text="0" Margin="2"/>
+                                    <TextBox x:Name="ProjH02TextBox" Grid.Row="1" Grid.Column="2" Text="0" Margin="2"/>
+
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="h10" HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Text="h11" HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="2" Text="h12" HorizontalAlignment="Center"/>
+                                    <TextBox x:Name="ProjH10TextBox" Grid.Row="3" Grid.Column="0" Text="0" Margin="2"/>
+                                    <TextBox x:Name="ProjH11TextBox" Grid.Row="3" Grid.Column="1" Text="1" Margin="2"/>
+                                    <TextBox x:Name="ProjH12TextBox" Grid.Row="3" Grid.Column="2" Text="0" Margin="2"/>
+
+                                    <TextBlock Grid.Row="4" Grid.Column="0" Text="h20" HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Row="4" Grid.Column="1" Text="h21" HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Row="4" Grid.Column="2" Text="h22" HorizontalAlignment="Center"/>
+                                    <TextBox x:Name="ProjH20TextBox" Grid.Row="5" Grid.Column="0" Text="0" Margin="2"/>
+                                    <TextBox x:Name="ProjH21TextBox" Grid.Row="5" Grid.Column="1" Text="0" Margin="2"/>
+                                    <TextBox x:Name="ProjH22TextBox" Grid.Row="5" Grid.Column="2" Text="1" Margin="2"/>
+                                </Grid>
+                                <Button Content="Apply Projective" Height="30" Click="ProjectiveButton_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </DockPanel>
+</Window>
