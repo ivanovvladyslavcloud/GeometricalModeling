@@ -1,0 +1,132 @@
+﻿<Window x:Class="Lab3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="clr-namespace:Lab3.UI"
+        Title="Geometry Editor"
+        Width="1800" Height="800"
+        MinWidth="1000" MinHeight="600">
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Exit"/>
+            </MenuItem>
+            <MenuItem Header="View">
+                <MenuItem Header="Zoom In" Click="ZoomInButton_Click"/>
+                <MenuItem Header="Zoom Out" Click="ZoomOutButton_Click"/>
+                <MenuItem Header="Reset View" Click="ResetViewButton_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Text="Ready"/>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock x:Name="ScaleStatusTextBlock" Text="Scale: 100%"/>
+            </StatusBarItem>
+        </StatusBar>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="600"/>
+            </Grid.ColumnDefinitions>
+
+
+
+            <Border Grid.Column="0" Background="#F5F5F5">
+                <ui:CoordinateCanvas x:Name="DrawingCanvas"/>
+            </Border>
+
+            <Border Grid.Column="1" BorderBrush="LightGray" BorderThickness="1,0,0,0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="15">
+
+
+                        <TextBlock Text="View &amp; System" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+
+                        <TextBlock Text="Scale Factor (px/unit)"/>
+                        <TextBox x:Name="ScaleValueTextBox" Text="20" Margin="0,3,0,8"/>
+                        <Button Content="Set Scale" Height="26" Click="SetScaleButton_Click" Margin="0,0,0,10"/>
+
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Content="Zoom +" Height="28" Margin="0,0,3,0" Click="ZoomInButton_Click"/>
+                            <Button Grid.Column="1" Content="Zoom -" Height="28" Margin="3,0,0,0" Click="ZoomOutButton_Click"/>
+                        </Grid>
+
+                        <TextBlock Text="Center Offset" FontWeight="Bold" Margin="0,5,0,5"/>
+                        <TextBlock Text="Offset X"/>
+                        <TextBox x:Name="OffsetXTextBox" Text="0" Margin="0,3,0,6"/>
+                        <TextBlock Text="Offset Y"/>
+                        <TextBox x:Name="OffsetYTextBox" Text="0" Margin="0,3,0,6"/>
+                        <Button Content="Apply Offset" Height="26" Click="ApplyOffsetButton_Click" Margin="0,0,0,10"/>
+
+                        <StackPanel Margin="0,15,0,0">
+                            <TextBlock Text="Display Options" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+                            <CheckBox x:Name="ShowPolygonCheckBox" Content="Show Control Polygon" IsChecked="True" Checked="ShowPolygonCheckBox_Changed" Unchecked="ShowPolygonCheckBox_Changed" Margin="0,0,0,15"/>
+                        </StackPanel>
+
+                        <StackPanel x:Name="WeightsPanel" Margin="0,15,0,0" IsEnabled="False">
+                            <TextBlock Text="Selected Segment Weights" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="WA:" VerticalAlignment="Center"/>
+                                <TextBox x:Name="WaTextBox" Grid.Column="1" Text="1.0" TextChanged="WeightTextBox_Changed"/>
+                            </Grid>
+
+                            <Grid Margin="0,0,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="WB:" VerticalAlignment="Center"/>
+                                <TextBox x:Name="WbTextBox" Grid.Column="1" Text="1.0" TextChanged="WeightTextBox_Changed"/>
+                            </Grid>
+
+                            <Grid Margin="0,0,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="WC:" VerticalAlignment="Center"/>
+                                <TextBox x:Name="WcTextBox" Grid.Column="1" Text="1.0" TextChanged="WeightTextBox_Changed"/>
+                            </Grid>
+
+                            <Grid Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="WD:" VerticalAlignment="Center"/>
+                                <TextBox x:Name="WdTextBox" Grid.Column="1" Text="1.0" TextChanged="WeightTextBox_Changed"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,15,0,0">
+                            <TextBlock Text="Animation" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+                            <Button x:Name="MorphButton" Content="Morph to Circle" Height="30" Click="MorphButton_Click" Margin="0,0,0,10"/>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <TextBlock Text="Transform" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+                            <TextBlock Text="Press the keys to move the curve accordingly: W - up, A - left S - down, D - right"/>
+                            <TextBlock Text="Press E to rotate the loop clockwise and Q to rotate it counterclockwise."/>
+                            <TextBlock Text="Right-click to change position of pivot point for rotation."/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </DockPanel>
+</Window>

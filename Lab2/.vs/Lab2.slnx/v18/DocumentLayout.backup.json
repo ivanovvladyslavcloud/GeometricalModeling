@@ -3,15 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\korea\\KPI_Course_4\\Geometrical Modeling\\Lab2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B19CC6EE-C919-4D8E-92D6-6B06F0E77129}|Lab2\\Lab2.csproj|C:\\Users\\korea\\KPI_Course_4\\Geometrical Modeling\\Lab2\\lab2\\core\\geometry\\strophoid2d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B19CC6EE-C919-4D8E-92D6-6B06F0E77129}|Lab2\\Lab2.csproj|c:\\users\\korea\\kpi_course_4\\geometrical modeling\\lab2\\lab2\\core\\geometry\\strophoid2d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B19CC6EE-C919-4D8E-92D6-6B06F0E77129}|Lab2\\Lab2.csproj|solutionrelative:lab2\\core\\geometry\\strophoid2d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B19CC6EE-C919-4D8E-92D6-6B06F0E77129}|Lab2\\Lab2.csproj|c:\\users\\korea\\kpi_course_4\\geometrical modeling\\lab2\\lab2\\rendering\\strophoidrender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B19CC6EE-C919-4D8E-92D6-6B06F0E77129}|Lab2\\Lab2.csproj|C:\\Users\\korea\\KPI_Course_4\\Geometrical Modeling\\Lab2\\lab2\\rendering\\strophoidrender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B19CC6EE-C919-4D8E-92D6-6B06F0E77129}|Lab2\\Lab2.csproj|solutionrelative:lab2\\rendering\\strophoidrender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B19CC6EE-C919-4D8E-92D6-6B06F0E77129}|Lab2\\Lab2.csproj|c:\\users\\korea\\kpi_course_4\\geometrical modeling\\lab2\\lab2\\ui\\coordinatecanvas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B19CC6EE-C919-4D8E-92D6-6B06F0E77129}|Lab2\\Lab2.csproj|C:\\Users\\korea\\KPI_Course_4\\Geometrical Modeling\\Lab2\\lab2\\ui\\coordinatecanvas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B19CC6EE-C919-4D8E-92D6-6B06F0E77129}|Lab2\\Lab2.csproj|solutionrelative:lab2\\ui\\coordinatecanvas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -54,8 +54,7 @@
               "RelativeToolTip": "Lab2\\Rendering\\StrophoidRender.cs",
               "ViewState": "AgIAAEkAAAAAAAAAAAAkwFIAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-29T08:05:34.488Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-29T08:05:34.488Z"
             },
             {
               "$type": "Document",
@@ -90,8 +89,7 @@
               "RelativeToolTip": "Lab2\\UI\\CoordinateCanvas.cs",
               "ViewState": "AgIAAJkAAAAAAAAAAADwv1IAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-23T21:42:06.879Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-23T21:42:06.879Z"
             },
             {
               "$type": "Document",
@@ -101,7 +99,7 @@
               "RelativeDocumentMoniker": "Lab2\\Core\\Geometry\\Strophoid2D.cs",
               "ToolTip": "C:\\Users\\korea\\KPI_Course_4\\Geometrical Modeling\\Lab2\\Lab2\\Core\\Geometry\\Strophoid2D.cs",
               "RelativeToolTip": "Lab2\\Core\\Geometry\\Strophoid2D.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAAArwG4AAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAF0AAAAAAAAAAAArwGoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-23T21:34:27.291Z",
               "EditorCaption": ""

@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{6CC80D98-1457-4082-BEEB-03EED9F70BE2}|Lab1\\Lab1.csproj|solutionrelative:lab1\\rendering\\coordinatesystemrender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6CC80D98-1457-4082-BEEB-03EED9F70BE2}|Lab1\\Lab1.csproj|c:\\users\\korea\\kpi_course_4\\geometrical modeling\\lab1\\lab1\\rendering\\arcrender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6CC80D98-1457-4082-BEEB-03EED9F70BE2}|Lab1\\Lab1.csproj|solutionrelative:lab1\\rendering\\arcrender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6CC80D98-1457-4082-BEEB-03EED9F70BE2}|Lab1\\Lab1.csproj|c:\\users\\korea\\kpi_course_4\\geometrical modeling\\lab1\\lab1\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{6CC80D98-1457-4082-BEEB-03EED9F70BE2}|Lab1\\Lab1.csproj|solutionrelative:lab1\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CC80D98-1457-4082-BEEB-03EED9F70BE2}|Lab1\\Lab1.csproj|C:\\Users\\korea\\KPI_Course_4\\Geometrical Modeling\\Lab1\\lab1\\rendering\\arcrender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6CC80D98-1457-4082-BEEB-03EED9F70BE2}|Lab1\\Lab1.csproj|solutionrelative:lab1\\rendering\\arcrender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6CC80D98-1457-4082-BEEB-03EED9F70BE2}|Lab1\\Lab1.csproj|C:\\Users\\korea\\KPI_Course_4\\Geometrical Modeling\\Lab1\\lab1\\core\\solver\\geometrysolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -51,7 +51,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ArcRender.cs",
               "DocumentMoniker": "C:\\Users\\korea\\KPI_Course_4\\Geometrical Modeling\\Lab1\\Lab1\\Rendering\\ArcRender.cs",
               "RelativeDocumentMoniker": "Lab1\\Rendering\\ArcRender.cs",
@@ -59,8 +59,7 @@
               "RelativeToolTip": "Lab1\\Rendering\\ArcRender.cs",
               "ViewState": "AgIAAFYAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-29T07:45:35.035Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-29T07:45:35.035Z"
             },
             {
               "$type": "Document",
@@ -97,7 +96,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\korea\\KPI_Course_4\\Geometrical Modeling\\Lab1\\Lab1\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Lab1\\MainWindow.xaml",
